@@ -95,7 +95,7 @@ dev.off()
 textab(make_origin_table(m), "origin-table")
 
 pdf(out("venn.pdf"))
-stuff <- get_yeast_uno_comp(m)
+stuff <- get_yeast_uno_comp(m, strata)
 par(mfrow=c(2,3))
 for(n in names(stuff$comparisons)){
     limma::vennDiagram(stuff$venn(n), cex=1, main=n, asp=1)

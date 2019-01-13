@@ -1,24 +1,29 @@
 # Count something as ORFic iff it matches an annotated protein
-by_simple <- function(node_labels){
+by_strict <- function(node_labels){
   cls <- node_labels$primary
   snd <- node_labels$secondary
   cls[snd == "O2" | snd == "O3"] <- "Non-ORFic"
   cls
 }
 
-make_venn <- function(x, y){
+make_venn_function <- function(strata, x, y){
+  # set youngest strata name to "orphan"
+  strata$mrca[strata$ps ==  max(strata$ps)] <- "orphan"
+  phylostratr_ages <- split(strata, strata$mrca) %>%
+      lapply(function(x) x$qseqid)
+
+  fagin_ages_x <- lapply(x$strOrigins, names)
+  fagin_ages_y <- lapply(y$strOrigins, names)
+
+  stopifnot(setequal(names(phylostratr_ages), names(fagin_ages_x)))
+  stopifnot(setequal(names(phylostratr_ages), names(fagin_ages_y)))
+
+  # venn maker function
   function(group){
-    phylostratr_ages <- split(strata, strata$mrca) %>%
-        lapply(function(x) x$qseqid) %>% rev
-    names(phylostratr_ages)[1] <- 'orphan'
-
-    fagin_ages_x <- lapply(x$strOrigins, names)
-    fagin_ages_y <- lapply(y$strOrigins, names)
-
     xs <- list(
-        phylostratr  = phylostratr_ages[[group]]
-      , fagin        = fagin_ages_x[[group]]
-      , fagin_simple = fagin_ages_y[[group]]
+        'standard'     = phylostratr_ages[[group]]
+      , 'O1|O2|O3'  = fagin_ages_x[[group]]
+      , 'O1'           = fagin_ages_y[[group]]
     )
     ids <- unique(unlist(xs))
     lapply(xs, function(x) ids %in% x) %>% do.call(what=rbind) %>% t %>%
@@ -27,6 +32,7 @@ make_venn <- function(x, y){
 }
 
 do_more <- function(classStr, feats, profiler=profiler){
+    # need to generalize this ...
     strOrigins <- list(
         orphan        = classStr[grepl("^[^O]+$", classStr)]
       , s5            = classStr[grepl("O[^O]{4}", classStr, perl=TRUE)]
@@ -59,7 +65,7 @@ do_more <- function(classStr, feats, profiler=profiler){
     )
 }
 
-get_yeast_uno_comp <- function(m){
+get_yeast_uno_comp <- function(m, strata){
 
   gene_profiler <- function(seqid, feats){
       y <- lapply(feats, function(f) f[f$seqid == seqid, -1]) %>% do.call(what=rbind)
@@ -72,9 +78,9 @@ get_yeast_uno_comp <- function(m){
   x <- do_more(classStr, feats, profiler=gene_profiler)
 
   .labels <- rmonad::get_value(m, tag="query_labels")[[1]]
-  simple_origins <- fagin:::.determine_origins(.labels, con, get_classifier=by_simple)
+  strict_origins <- fagin:::.determine_origins(.labels, con, get_classifier=by_strict)
 
-  y <- do_more(simple_origins$classStr, feats, profiler=gene_profiler)
+  y <- do_more(strict_origins$classStr, feats, profiler=gene_profiler)
 
   list(
     comparisons = list(
@@ -85,6 +91,6 @@ get_yeast_uno_comp <- function(m){
      , s2            = merge_named_vectors(x=x$strSums[[5]], y=y$strSums[[5]], .fill=0)
      , Saccharomyces = merge_named_vectors(x=x$strSums[[6]], y=y$strSums[[6]], .fill=0)
     ),
-    venn = make_venn(x,y)
+    venn = make_venn_function(strata, x, y)
   )
 }
