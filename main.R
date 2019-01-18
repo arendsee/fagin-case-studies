@@ -9,8 +9,8 @@ source("venn.R")
 
 dir.create("output", showWarnings=FALSE)
 
-con <- get_config()
-m <- run_fagin(con)
+con <- get_yeast_config()
+m <- .run_fagin(con)
 
 # a focal to deeper ordering for species (used in plots and tables)
 species_order <- get_species_phylogenetic_order(con)
@@ -43,7 +43,7 @@ pdf(out("yeast-tree.pdf"))
 plot(ape::read.tree(con@input@tree), show.node.label=TRUE)
 dev.off()
 
-strata <- readr::read_tsv('INPUT/phylostratr-strata.tab')
+strata <- readr::read_tsv("arendsee/fagin-yeast/archive/phylostratr-strata.tab")
 dplyr::group_by(strata, mrca) %>%
   dplyr::summarize(count = n()) %>%
   textab("phylostratr-counts", caption="Number of genes in each phylostratum relative to the focal species *S. cerevisiae*.")
