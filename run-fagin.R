@@ -1,6 +1,6 @@
 get_brassicaceae_config <- function(){
   con <- fagin::config() 
-  con@archive = "ARCHIVE-brassicaceae"
+  con@archive = "brassicaceae-archive"
   con@synder@offsets = c(1L,1L) # offsets for satsuma?
   con@synder@trans = "d" # proportion transform satsuma
   con@alignment@dna2dna_maxspace = 1e8L
@@ -25,15 +25,16 @@ get_brassicaceae_config <- function(){
     , Capsella_rubella    = "brassicaceae-input/syn/Arabidopsis_thaliana.vs.Capsella_rubella.syn"
     , Eutrema_salsugineum = "brassicaceae-input/syn/Arabidopsis_thaliana.vs.Eutrema_salsugineum.syn"
   )
-  con@input@tree <- "brassicaceae-input/tree."
+  con@input@tree <- "brassicaceae-input/tree"
   con@input@query_gene_list <- "brassicaceae-input/brassicaceae-specific-models.txt"
   con@input@control_gene_list <- "brassicaceae-input/non-brassicaceae-specific-models.txt"
+  fagin::validate_config(con)
   con
 }
 
 get_yeast_config <- function(){
   con <- fagin::config() 
-  con@archive = "ARCHIVE-yeast"
+  con@archive = "yeast-archive"
   con@synder@offsets = c(1L,1L) # offsets for mummer
   con@synder@trans = "p" # percent identity transform mummer 
   con@alignment@dna2dna_maxspace = 1e8L
@@ -67,6 +68,7 @@ get_yeast_config <- function(){
   con@input@tree <- "arendsee/fagin-yeast/archive/tree."
   con@input@query_gene_list <- "arendsee/fagin-yeast/archive/orphan-list.txt"
   con@input@control_gene_list <- "arendsee/fagin-yeast/archive/control-list.txt"
+  fagin::validate_config(con)
   con
 }
 

@@ -10,4 +10,4 @@ run-brass:
 	Rscript brass-main.R
 
 clean:
-	rm -rf brass-output yeast-output
+	rm -rf *-output *-archive 
