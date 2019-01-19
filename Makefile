@@ -1,8 +1,13 @@
 init:
 	data get https://datahub.io/arendsee/fagin-yeast
 
-run:
-	Rscript main.R
+# run yeast case study 
+run-yeast:
+	Rscript yeast-main.R
+
+# run brassicaceae case study 
+run-brass:
+	Rscript brass-main.R
 
 clean:
-	rm -rf output
+	rm -rf brass-output yeast-output

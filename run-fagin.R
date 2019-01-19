@@ -1,3 +1,36 @@
+get_brassicaceae_config <- function(){
+  con <- fagin::config() 
+  con@archive = "ARCHIVE-brassicaceae"
+  con@synder@offsets = c(1L,1L) # offsets for satsuma?
+  con@synder@trans = "d" # proportion transform satsuma
+  con@alignment@dna2dna_maxspace = 1e8L
+  con@input@focal_species = "Arabidopsis_thaliana"
+  con@input@gff <- list(
+      Arabidopsis_lyrata   = "brassicaceae-input/gff/Arabidopsis_lyrata.gff"
+    , Arabidopsis_thaliana = "brassicaceae-input/gff/Arabidopsis_thaliana.gff"
+    , Brassica_rapa        = "brassicaceae-input/gff/Brassica_rapa.gff"
+    , Capsella_rubella     = "brassicaceae-input/gff/Capsella_rubella.gff"
+    , Eutrema_salsugineum  = "brassicaceae-input/gff/Eutrema_salsugineum.gff"
+  )
+  con@input@fna <- list(
+      Arabidopsis_lyrata   = "brassicaceae-input/fna/Arabidopsis_lyrata.fna"
+    , Arabidopsis_thaliana = "brassicaceae-input/fna/Arabidopsis_thaliana.fna"
+    , Brassica_rapa        = "brassicaceae-input/fna/Brassica_rapa.fna"
+    , Capsella_rubella     = "brassicaceae-input/fna/Capsella_rubella.fna"
+    , Eutrema_salsugineum  = "brassicaceae-input/fna/Eutrema_salsugineum.fna"
+  )
+  con@input@syn <- list(
+      Arabidopsis_lyrata  = "brassicaceae-input/syn/Arabidopsis_thaliana.vs.Arabidopsis_lyrata.syn"
+    , Brassica_rapa       = "brassicaceae-input/syn/Arabidopsis_thaliana.vs.Brassica_rapa.syn"
+    , Capsella_rubella    = "brassicaceae-input/syn/Arabidopsis_thaliana.vs.Capsella_rubella.syn"
+    , Eutrema_salsugineum = "brassicaceae-input/syn/Arabidopsis_thaliana.vs.Eutrema_salsugineum.syn"
+  )
+  con@input@tree <- "brassicaceae-input/tree."
+  con@input@query_gene_list <- "brassicaceae-input/brassicaceae-specific-models.txt"
+  con@input@control_gene_list <- "brassicaceae-input/non-brassicaceae-specific-models.txt"
+  con
+}
+
 get_yeast_config <- function(){
   con <- fagin::config() 
   con@archive = "ARCHIVE-yeast"

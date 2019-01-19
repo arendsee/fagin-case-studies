@@ -21,9 +21,9 @@ make_venn_function <- function(strata, x, y){
   # venn maker function
   function(group){
     xs <- list(
-        'standard'     = phylostratr_ages[[group]]
-      , 'O1|O2|O3'  = fagin_ages_x[[group]]
-      , 'O1'           = fagin_ages_y[[group]]
+        'standard' = phylostratr_ages[[group]]
+      , 'default' = fagin_ages_x[[group]]
+      , 'strict' = fagin_ages_y[[group]]
     )
     ids <- unique(unlist(xs))
     lapply(xs, function(x) ids %in% x) %>% do.call(what=rbind) %>% t %>%
