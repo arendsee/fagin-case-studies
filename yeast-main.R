@@ -12,9 +12,9 @@ out <- make_out("yeast-output")
 con <- get_yeast_config()
 m   <- .run_fagin(con)
 
-common_stuff(m=m, con=con, out=out)
-
 strata <- readr::read_tsv("arendsee/fagin-yeast/archive/phylostratr-strata.tab")
+common_stuff(m=m, con=con, out=out, strata=strata)
+
 dplyr::group_by(strata, mrca) %>%
   dplyr::summarize(count = n()) %>%
   textab("phylostratr-counts", caption="Number of genes in each phylostratum relative to the focal species *S. cerevisiae*.")

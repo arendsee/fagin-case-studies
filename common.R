@@ -15,7 +15,7 @@ make_out <- function(outdir){
   out
 }
 
-common_stuff <- function(m, con, out){
+common_stuff <- function(m, con, out, strata=NULL){
   # a focal to deeper ordering for species (used in plots and tables)
   species_order <- get_species_phylogenetic_order(con)
 
@@ -77,11 +77,11 @@ common_stuff <- function(m, con, out){
   ## Fagin output
 
   pdf(out("secondary-labels-1.pdf"))
-  plot_secondary_labels(m, species_order, fill='secondary')
+  plot_secondary_labels(m, species_order, strata=strata, fill='secondary')
   dev.off()
 
   pdf(out("secondary-labels-2.pdf"))
-  plot_secondary_labels(m, species_order, fill='species')
+  plot_secondary_labels(m, species_order, strata=strata, fill='species')
   dev.off()
 
   ## Origin classifications

@@ -10,7 +10,7 @@ make_venn_function <- function(strata, x, y){
   # set youngest strata name to "orphan"
   strata$mrca[strata$ps ==  max(strata$ps)] <- "orphan"
   phylostratr_ages <- split(strata, strata$mrca) %>%
-      lapply(function(x) x$qseqid)
+      lapply(function(x) x$seqid)
 
   fagin_ages_x <- lapply(x$strOrigins, names)
   fagin_ages_y <- lapply(y$strOrigins, names)
