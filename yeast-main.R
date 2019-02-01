@@ -12,8 +12,10 @@ out <- make_out("yeast-output")
 con <- get_yeast_config()
 m   <- .run_fagin(con)
 
+# a focal to deeper ordering for species (used in plots and tables)
+species_order <- get_species_phylogenetic_order(con)
 strata <- readr::read_tsv("arendsee/fagin-yeast/archive/phylostratr-strata.tab")
-common_stuff(m=m, con=con, out=out, strata=strata)
+common_stuff(m=m, con=con, out=out, species_order=species_order, strata=strata)
 
 dplyr::group_by(strata, mrca) %>%
   dplyr::summarize(count = n()) %>%

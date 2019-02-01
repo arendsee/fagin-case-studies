@@ -15,10 +15,7 @@ make_out <- function(outdir){
   out
 }
 
-common_stuff <- function(m, con, out, strata=NULL){
-  # a focal to deeper ordering for species (used in plots and tables)
-  species_order <- get_species_phylogenetic_order(con)
-
+common_stuff <- function(m, con, out, species_order=species_order, strata=NULL){
   missues(m) %>% kable(format='html') %>% write(out('issues.html'))
   mtabulate(m, code=TRUE) %>% kable(format='html') %>% write(out('table.html'))
 
