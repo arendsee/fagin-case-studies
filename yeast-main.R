@@ -5,8 +5,9 @@ library(magrittr)
 library(readr)
 
 source("run-fagin.R")
-source("yeast-venn.R")
 source("common.R")
+source("common-venn.R")
+source("yeast-venn.R")
 
 out <- make_out("yeast-output")
 con <- get_yeast_config()
@@ -21,7 +22,7 @@ dplyr::group_by(strata, mrca) %>%
   dplyr::summarize(count = n()) %>%
   textab("phylostratr-counts", caption="Number of genes in each phylostratum relative to the focal species *S. cerevisiae*.")
 
-pdf(out("venn.pdf"))
+pdf(out("yeast-venn.pdf"))
 stuff <- get_yeast_uno_comp(m, strata)
 par(mfrow=c(2,3))
 for(n in names(stuff$comparisons)){
