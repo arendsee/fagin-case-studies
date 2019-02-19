@@ -1,7 +1,7 @@
 get_brassicaceae_config <- function(){
   con <- fagin::config() 
   con@archive = "brassicaceae-archive"
-  con@synder@offsets = c(1L,1L) # offsets for satsuma?
+  con@synder@offsets = c(0L,1L)
   con@synder@trans = "d" # proportion transform satsuma
   con@alignment@dna2dna_maxspace = 1e8L
   con@input@focal_species = "Arabidopsis_thaliana"

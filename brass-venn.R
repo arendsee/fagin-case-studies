@@ -1,12 +1,10 @@
 do_more <- function(classStr, feats, profiler=profiler){
     # need to generalize this ...
     strOrigins <- list(
-        orphan        = classStr[grepl("^[^O]+$", classStr)]
-      , s5            = classStr[grepl("O[^O]{4}", classStr, perl=TRUE)]
-      , s4            = classStr[grepl(".{1}O[^O]{3}", classStr, perl=TRUE)]
-      , s3            = classStr[grepl(".{2}O[^O]{2}", classStr, perl=TRUE)]
-      , s2            = classStr[grepl(".{3}O[^O]{1}", classStr, perl=TRUE)]
-      , Saccharomyces = classStr[grepl(".{4}O", classStr, perl=TRUE)]
+        orphan       = classStr[grepl("^[^O]+$",     classStr)]
+      , Arabidopsis  = classStr[grepl("^O[^O][^O]$", classStr, perl=TRUE)]
+      , Camelineae   = classStr[grepl("^.O[^O]$",    classStr, perl=TRUE)]
+      , Brassicaceae = classStr[grepl("^..O$",       classStr, perl=TRUE)]
     )
     feats <- lapply(feats, function(d){
         d[, c("seqid",
@@ -32,11 +30,11 @@ do_more <- function(classStr, feats, profiler=profiler){
     )
 }
 
-get_yeast_uno_comp <- function(m, strata){
+get_brass_uno_comp <- function(m, strata){
 
   gene_profiler <- function(seqid, feats){
       y <- lapply(feats, function(f) f[f$seqid == seqid, -1]) %>% do.call(what=rbind)
-      rownames(y) <- sub("feature_table/query/Saccharomyces_", "", rownames(y))
+      rownames(y) <- sub("feature_table/query/", "", rownames(y))
       y
   }
 
@@ -51,12 +49,10 @@ get_yeast_uno_comp <- function(m, strata){
 
   list(
     comparisons = list(
-       orphan        = merge_named_vectors(x=x$strSums[[1]], y=y$strSums[[1]], .fill=0)
-     , s5            = merge_named_vectors(x=x$strSums[[2]], y=y$strSums[[2]], .fill=0)
-     , s4            = merge_named_vectors(x=x$strSums[[3]], y=y$strSums[[3]], .fill=0)
-     , s3            = merge_named_vectors(x=x$strSums[[4]], y=y$strSums[[4]], .fill=0)
-     , s2            = merge_named_vectors(x=x$strSums[[5]], y=y$strSums[[5]], .fill=0)
-     , Saccharomyces = merge_named_vectors(x=x$strSums[[6]], y=y$strSums[[6]], .fill=0)
+       orphan       = merge_named_vectors(x=x$strSums[[1]], y=y$strSums[[1]], .fill=0)
+     , Arabidopsis  = merge_named_vectors(x=x$strSums[[2]], y=y$strSums[[2]], .fill=0)
+     , Camelineae   = merge_named_vectors(x=x$strSums[[3]], y=y$strSums[[3]], .fill=0)
+     , Brassicaceae = merge_named_vectors(x=x$strSums[[4]], y=y$strSums[[4]], .fill=0)
     ),
     venn = make_venn_function(strata, x, y)
   )
