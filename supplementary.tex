@@ -1,0 +1,278 @@
+\section{Supplementary Material}
+
+\subsection{Raw genomic input data sources  and genome assembly summaries}
+\FloatBarrier
+
+The yeast genomes and feature annotations were retrieved from the Saccharomyces Genome
+Database \cite{cherry2011saccharomyces}. 
+
+%need data also for Brassicaceae in these sections
+The Brassicaceae genomes and feature annotations were retrieved from \textbf{XXXXX} (ref).
+
+\begin{table}[hbpt]
+  \centering
+  \caption{Summary output for genomes assembly data. In this example table,
+  \textbf{Scaffolds}  is a count of the number of scaffolds in each genome
+  assembly; \textbf{Bases} is the total genome length; \textbf{Prots} is the
+  total number of proteins annotated in the GFF; \textbf{GC} is the \%GC
+  content; \textbf{Ns} is the total number of unknown bases (N) in the genome
+  assembly. The species are listed in order of phylogenetic distance from
+  \textit{S. cerevisiae}, the focal species.}
+  \label{tab:genome-summaries}
+  \begin{tabular}{lrrrrr}
+    Species                  & Scafs &    Bases & Prots &    GC &     Ns \\
+    \hline
+    \textit{S. cerevisiae}   &    17 & 12157105 &  6008 & 0.381 &      0 \\
+    \textit{S. paradoxus}    &   832 & 11872617 &  5933 & 0.387 &      0 \\
+    \textit{S. mikatae}      &  1648 & 11470251 &  6086 & 0.380 &      0 \\
+    \textit{S. kudriavzevii} &  2054 & 11189057 &  6529 & 0.398 &   2127 \\
+    \textit{S. arboricola}   &    35 & 11619520 &  3659 & 0.387 & 224325 \\
+    \textit{S. eubayanus}    &    24 & 11734173 &  5379 & 0.399 & 121986 \\
+    \textit{S. uvarum}       &  1098 & 11477549 &  5721 & 0.402 &      0 \\
+    % TODO: add nd50
+  \end{tabular}
+\end{table}
+
+\FloatBarrier
+\subsection{Synteny map construction and summaries}
+
+The syntenic search intervals for yeast and Brassicaceae species against their respective focal species were inferred by \textbf{synder}, and calculated in [\textbf{SYNDER REF}] Summaries of this data are shown in \textbf{Table xx and xx}
+
+
+\begin{table}[hbpt]
+  \centering
+  \caption{Numeric summary of the lengths of the syntenic blocks (in
+  nucleotides) in the synteny maps between \textit{S. cerevisiae} and each of
+  the listed target species. \textbf{N}, total number of blocks in the synteny map.}
+  \label{tab:synmap-summary}
+  \begin{tabular}{lrrrrrrrr}
+    Species                  & min & q25 & median &    q75 &   max &     N \\
+    \hline
+    \textit{S. paradoxus}    &  63 & 177 &    389 & 852.00 & 13716 & 12232 \\
+    \textit{S. mikatae}      &  63 &  80 &    275 & 552.25 &  6836 &  6688 \\
+    \textit{S. kudriavzevii} &  65 &  75 &    257 & 489.00 &  4870 &  5189 \\
+    \textit{S. arboricola}   &  65 &  71 &    159 & 417.00 &  4103 &  4534 \\
+    \textit{S. eubayanus}    &  65 &  70 &    102 & 375.00 &  4751 &  3914 \\
+    \textit{S. uvarum}       &  65 &  70 &    104 & 376.00 &  6836 &  3833 \\
+  \end{tabular}
+\end{table}
+
+\FloatBarrier
+\subsection{Synder results and summary}
+\FloatBarrier
+
+\begin{table}[!h]
+  \centering
+  \caption{Numeric summary of the lengths of the search intervals inferred by
+  {\tt synder} between \textit{S. cerevisiae} and each of the listed target
+  species.  The column 2-7 refer to the minimum, 25th quantile, median, 75th
+  quantile, and maximum of the block lengths. The final column, \textbf{N}, is
+  the total number of blocks in the synteny map.}
+  \label{tab:synder-summary}
+  \begin{tabular}{lrrrrrrrr}
+    Species                   & min & q25    & median &    q75   &   max &     N \\
+    \hline
+    \textit{S. paradoxus}     &   1 &  670.0 &   1215 &  2211.00 & 26047 & 13219 \\
+    \textit{S. mikatae}       &   1 &  556.5 &   1714 &  3858.00 & 31027 & 16039 \\
+    \textit{S. kudriavzevii}  &   1 & 1006.0 &   2332 &  4919.75 & 26409 & 21460 \\
+    \textit{S. arboricola}    &   1 & 1956.0 &   4643 &  9723.00 & 51035 & 19660 \\
+    \textit{S. eubayanus}     &   3 & 2480.0 &   5967 & 12521.00 & 61711 & 23995 \\
+    \textit{S. uvarum}        &   1 & 1327.5 &   3419 &  7746.00 & 45931 & 26095
+  \end{tabular}
+\end{table}
+
+\begin{table}[!h]
+  \centering
+  \caption{Summary of {\tt synder} flags for Saccharomyces case study.
+  \textbf{Inside} means that the query genes did not overlap any syntenic link
+  in the gene (this does not mean the edges are ambiguous).  \textbf{Lo},
+  \textbf{Hi}, \textbf{Both}, and \textbf{None} relate to whether the edges of
+  the search interval are in a syntenically unambiguous region. A gene is
+  counted as \textbf{Lo} if any search interval lower bound is unambiguous,
+  \textbf{Hi} is any upper bound is unambiguous, \textbf{Both} if the lower and
+  upper bound of any search interval is unambiguous, and \textbf{None} is no
+  edge in any search interval is unambiguous.  \textbf{Scrambled} means all
+  search intervals have ambiguous edges and are inbetween syntenic links.
+  \textbf{Una} means the gene may be in an unassembled region of the genome
+  (one edge of the search interval is flush against a terminus of a scaffold).}
+  \label{tab:synder-flag-summary}
+  \begin{tabular}{l | r | rrrr | r | r}
+    Species                  & Inside & Lo   & Hi   & Both & None  & Scrambled & Una   \\
+    \hline                                                         
+    \textit{S. paradoxus}    & 699    & 5822 & 5814 & 5226 & 340   & 328        & 1038  \\
+    \textit{S. mikatae}      & 3266   & 3980 & 4003 & 3370 & 2003  & 2027       & 3027  \\
+    \textit{S. kudriavzevii} & 4135   & 2628 & 2655 & 2022 & 3312  & 3411       & 4568  \\
+    \textit{S. arboricola}   & 4488   & 5137 & 5154 & 4856 & 1101  & 2149       & 513   \\
+    \textit{S. eubayanus}    & 4972   & 4729 & 4724 & 4462 & 1541  & 2883       & 481   \\
+    \textit{S. uvarum}       & 4987   & 2759 & 2754 & 2376 & 3430  & 3968       & 4256 
+  \end{tabular}
+\end{table}
+% NOTE: this table is derived from the output of `synder::flag_summary`, but
+% the columns have been renamed.
+  % Inside    -- inbetween    = all(.data$inbetween),
+  % Lo        -- lo_bound     = any(.data$l_flag < 2),
+  % Hi        -- hi_bound     = any(.data$r_flag < 2),
+  % Both      -- doubly_bound = any(.data$l_flag < 2 & .data$r_flag < 2),
+  % None      -- unbound      = all(.data$l_flag > 1 & .data$r_flag > 1),
+  % Scrambled -- incoherent   = any(.data$incoherent),
+  % Una       -- unassembled  = any(.data$unassembled)
+
+We infer the search intervals by calling the {\tt synder search} function. This
+is a function of a synteny map and four parameters: 1) {\tt trans} specifies the
+function needed to transform the score column in the synteny map to one that is
+additive; 2) $k$ is the number of conflicting syntenic intervals allowed in a
+block before it is broken (set to 0 by default); 3) $r$ is a score decay rate
+that is used in calculating a score for each syntenic block created by {\tt
+synder}; 4) {\tt offsets} which specify the input and output bases (0 or 1) of
+the synteny map. Parameters 1 and 4 are specific to the tool that created the
+synteny map. For the yeast study, where the synteny program {\tt MUMmer4} was used,
+trans="p" (since the results are a percent identity) and offsets=11 since input
+and output are 1-based.
+
+The output of the {\tt synder search} function is 1) a set of one or more
+search intervals for each focal gene (summarized in
+\suptabref{tab:synder-summary}) and 2) a description of each seach interval
+consisting of a flag describing each edge of the interval, whether the search
+interval overlaps a syntenic region in the synteny map, and a relative score
+for the search interval. {\tt synder} can then summarize all search intervals
+for each focal gene into a single interpretation of the syntenic context of the
+gene (\suptabref{tab:synder-flag-summary}).  
+
+\subsection{Validation and parsing of GFF files}\label{subsec:cleaning-gffs}
+
+The GFF format is simple but highly error prone and GFFs from difference
+sources can follow very different conventions. This causes much difficulty in
+practical analysis. While standardized formats exist for storing feature
+information, GFF has persisted as the most commonly used. For this reason, we
+choose to use GFF, but also carefully test the assumptions we make about the
+content. The most problematic component of GFF is the 9th column that stores
+tag-value data. It is from these tag-value pairs that we build the gene models
+from which we extract the locations of features, the protein sequences for
+genes, and the RNA sequences of transcripts.
+
+\begin{description}
+  \item[All columns have correct type] See \suptabref{tab:gff-types}
+  \item[Unify type synonyms] According to the GFF3 specification
+    (https://github.com/The-Sequence-Ontology/Specifications), names for the
+    3rd column of a GFF3 file should contain the names or IDs of elements from
+    the Sequence Ontology \cite{eilbeck2005sequence}. Based on this, we
+    coalesce members from the following equivalence groups described in
+    \suptabref{tab:sequence-ontology}.
+  \item[Handle AUGUSTUS fields] The AUGUSTUS gene prediction program uses the
+    tag 'Other' to represent the Parent relationship. If the {\tt source}
+    column of the GFF3 file (2nd column) is "AUGUSTUS", then the tag 'Other'
+    will be converted to 'Parent' (with a warning that will be passed through
+    {\tt rmonad} to the user).
+  \item[Assert that each Parent, ID, and Name tag contains a unique value] In
+    the GFF3 spec, a tag can be associated with a comma-delimited list of
+    values. {\tt fagin} currently does not support this and will raise an error
+    if this case is found.
+  \item[Treat Parent tags with a value of '-' as missing]
+  \item[Handle unnamed fields] If no ID is given, but there is one untagged
+    field, and if there are no other fields, then cast the untagged field as an
+    ID. This is needed to accommodate the irregular output of AUGUSTUS.
+  \item[Assert parent child relations are correct] \
+  \begin{itemize}
+    \item If a feature link to a Parent, then the Parent must exist in the GFF
+    \item All Parent IDs must have either type 'gene' or 'mRNA'
+    \item All CDS and all exon must have a Parent (gene or mRNA) 
+    \item All mRNA and IDs must be unique
+  \end{itemize}
+\end{description}
+
+\begin{table}[htpb]
+  \centering
+  \caption{A GFF file is a tab-delimited file with optional comments ('\#'
+  initialized). The table must have nine columns, as listed under "Colum~name".
+  The possible types of entries are listed under column "Base~type".  Entries
+  in some columns are optional. The "phase" column is required for all GFF. The
+  "attr" column contains a semicolon delimited list of 'tag=value' pairs.
+  According to GFF3 specification, "attr" values may also be in comma delimited
+  lists, but {\tt fagin} does not currently handle these lists and raises an
+  error if a comma appears in one of the tags required by {\tt fagin} (Parent,
+  ID, or Name).}
+  \label{tab:gff-types}
+  \begin{tabular}{llll}
+    Column name & Base type & Optional & Notes and Restrictions \\
+    \hline
+    seqid  & string               & No  & all IDs present in genome \\
+    source & string               & Yes & {}                        \\
+    type   & string               & No  & {}                        \\
+    start  & integer              & No  & {}                        \\
+    end    & integer              & No  & $end \ge start$           \\
+    score  & numeric              & Yes & {}                        \\
+    strand & $+ \vert -$          & Yes & {}                        \\
+    phase  & $0 \vert 1 \vert 2 $ & Yes & Required for CDS features \\
+    attr   & tag-value list       & No  & {}                        \\
+  \end{tabular}
+\end{table}
+
+\begin{table}[htpb]
+  \centering
+  \caption{Making the GFF files consistent: merging equivalent terms. The left
+  column contains the names that all equivalent terms will be converted to. The
+  $SO:XXXXXXX$ terms are Sequence Ontology IDs. {\tt fagin}  merges the $mRNA$
+  and $transcript$ groups. These groups are technically different, but are
+  often used interchangeably in practice. Also {\tt fagin} collapses the $exon$
+  and the more specific $coding\_exon$ terms.}
+  \label{tab:sequence-ontology}
+  \begin{tabular}{ll}
+    term & equivalent term \\
+    \hline
+    gene & SO:0000704 \\
+    mRNA & messenger\_RNA , messenger RNA , SO:0000234, transcript, SO:0000673 \\
+    CDS  & coding\_sequence , coding sequence, SO:0000316 \\
+    exon & SO:0000147, coding\_exon , coding exon , SO:0000195
+  \end{tabular}
+\end{table}
+
+\subsection{Extracting data from the
+GFF files}\label{sec:derived-data}
+
+{\bf Extracting mRNAs.} Given the GFF and genome, the extraction of the
+transcripts by {\tt fagin} (mRNAs) is fairly straightforward.  The sequences of
+all exons are extracted and concatenated. If the sense of the mRNA is negative,
+the result is reverse transcribed.
+
+\noindent
+{\bf Extracting protein data.} Extracting the protein coding sequences from the
+genome given the GFF is slightly more involved.  The GFF records all Coding
+Sequences (CDS) and associates each with a parent (an mRNA or gene type
+feature). The CDS may be spread across many exons, thus the CDS is a list of
+intervals. These DNA intervals can be extracted from the genome and pasted
+together to form the full CDS. However, there is some nuance to this step.
+First, if the mRNA is negative sense, the CDS must be reverse transcribed. A
+more difficult case arises when the initial interval of the CDS does not begin
+in the correct reading frame.  This can happen, for example, when part of the
+gene model is missing from the assembly. So the first interval in the CDS may
+begin on the 2nd or 3rd position on the codon. The 'phase' column of the GFF
+file stores the number of nucleotides that must be subtracted from the
+beginning of a CDS interval to read the first complete codon. {\tt fagin}
+stores the phase data and trims all models that start in a non-zero phase.
+Thus, partial protein models are allowed.
+
+Once the CDSs, or partial CDSs, have been extracted, they can be translated.
+{\tt fagin} uses the {\tt translation} function from the {\tt Biostrings}
+package of the Bioconductor project. By setting {\tt if.fuzzyi.codon="solve"},
+it performs a "fuzzy" translation where codons with ambiguous nucleotides
+(e.g., N for unknown base or Y for pyrimidine) will either be translated as X
+(if more than one amino acid matches the pattern) or as a specific amino acid
+(if only one amino acid matches). The resulting proteins are given the name of
+their parent and stored for future use.
+
+\noindent
+{\bf Extracting ORFs in mRNAs and the genome.}
+
+{\tt fagin} identifies ORFs in the mRNAs and across the entire genome. ORF
+identification is limited to the mono-exonic case (i.e. splice sites are not
+searched for). {\tt fagin}  uses the Bioconductor ORFik package \cite{orfik}.
+This package is used to identify the longest, uninterrupted ORF for each stop
+codon in the genome (or mRNA). For the genome (but not the mRNA) we search both
+strands. The start and stop codons can be set by the user (the {\tt fagin}
+default is {\tt START=ATG} and {\tt STOP={TAA,TGA,TAG}}). The minimum ORF
+length can also be set by the user, with the default being 30 amino acids.
+
+% TODO: I need to fix this in the code
+{\tt fagin} currently uses the standard gene table for all genes. This would cause
+problems in animal and fungi mitochondria and in several other cases (though
+plant mitochondria and chloroplasts actually use the standard table).
