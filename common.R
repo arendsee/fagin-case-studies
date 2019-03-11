@@ -15,6 +15,15 @@ make_out <- function(outdir){
   out
 }
 
+rbind_with_name <- function(xs, grpname){
+  for(name in names(xs)){
+    xs[[name]][[grpname]] <- name
+  }
+  out <- do.call(rbind, xs)
+  rownames(out) <- NULL
+  out
+}
+
 common_stuff <- function(m, con, out, species_order=species_order, strata=NULL){
   missues(m) %>% kable(format='html') %>% write(out('issues.html'))
   mtabulate(m, code=TRUE) %>% kable(format='html') %>% write(out('table.html'))

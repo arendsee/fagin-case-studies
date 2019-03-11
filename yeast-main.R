@@ -8,6 +8,7 @@ source("run-fagin.R")
 source("common.R")
 source("common-venn.R")
 source("yeast-venn.R")
+source("yeast-spreadsheet.R")
 
 out <- make_out("yeast-output")
 con <- get_yeast_config()
@@ -29,3 +30,5 @@ for(n in names(stuff$comparisons)){
     limma::vennDiagram(stuff$venn(n), cex=1, main=n, asp=1)
 }
 dev.off()
+
+make_yeast_spreadsheet(m, strata)
