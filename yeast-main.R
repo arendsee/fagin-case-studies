@@ -32,4 +32,4 @@ for(n in names(stuff$comparisons)){
 }
 dev.off()
 
-make_yeast_spreadsheet(m, strata, out)
+make_spreadsheet(m, strata, out)

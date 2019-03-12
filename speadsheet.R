@@ -1,18 +1,4 @@
-# [x] gene_name
-# [ ] locus_id
-# [x] standard_ps_name
-# [x] standard_ps_level
-# [x] target_species
-# [x] homology_class
-# [ ] homology_class p-value
-# [ ] feature_alignment_length
-# [ ] feature_seqid
-# [ ] feature_start
-# [ ] feature_end
-# [ ] clade
-# [ ] clade_class
-
-make_yeast_spreadsheet <- function(m, strata){
+make_spreadsheet <- function(m, strata, out){
 
   seqid <- get_value(m, tag='query_genes')[[1]]
 
@@ -159,11 +145,3 @@ make_yeast_spreadsheet <- function(m, strata){
   XLConnect::writeWorksheet(wb, data=gentab, sheet="gene2genome")
   XLConnect::saveWorkbook(wb)
 }
-
-# Another is the xml file that we discussed before several times, for athal and
-# yeast. with column info: locus ID (or similar for yeast), gene name,
-# phylostratr-assigned PS.  then for EACH clade: specific assignment (i.e.,Agen,
-# Atrn, Aorf, Ncda, Nexo.....Uuna,Unst,Utec) and support(P value) for assignment;
-# then the length and coordinates of the CDS and (as applicable) matching ORF or
-# NT-sequence; then your Fig4-based overall assignment (you can call it
-# "potential overall assignment or some-such)

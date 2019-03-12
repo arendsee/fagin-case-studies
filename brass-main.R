@@ -23,3 +23,5 @@ for(n in names(stuff$comparisons)){
     limma::vennDiagram(stuff$venn(n), cex=1, main=n, asp=1)
 }
 dev.off()
+
+make_spreadsheet(m, strata, out)
