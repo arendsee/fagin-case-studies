@@ -3,6 +3,7 @@ library(rmonad)
 library(knitr)
 library(magrittr)
 library(readr)
+library(dplyr)
 
 source("run-fagin.R")
 source("common.R")
@@ -31,4 +32,4 @@ for(n in names(stuff$comparisons)){
 }
 dev.off()
 
-make_yeast_spreadsheet(m, strata)
+make_yeast_spreadsheet(m, strata, out)
