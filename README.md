@@ -31,7 +31,7 @@ library(devtools)
 install_github("arendsee/fagin")
 ```
 
-# Data Retrieval
+# Yeast Case Study
 
 All data needed to run this program is available on DataHub. To retrieve this
 data, first install the data CLI tool by following the instructions available
@@ -43,3 +43,14 @@ make init
 
 This will download all the input dataset from DataHub and then organize it the
 way `fagin` wants.
+
+You can then run the yeast case study with the command:
+
+``` sh
+make run-yeast
+```
+
+# Brassicaceae Case Study
+
+To run this study you will need to retrieve the appropriate data, which I will
+leave as an exercise for the reader.
